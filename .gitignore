@@ -1,0 +1,21 @@
+# Dependencias
+node_modules/
+
+# Sesión de WhatsApp (credenciales: NO subir nunca)
+session/
+
+# Base de datos local de usuarios
+database/
+
+# Variables de entorno y secretos
+.env
+*.env
+
+# Archivos temporales y logs
+tmp/
+*.log
+*.tmp
+npm-debug.log*
+
+# Sistema
+.DS_Store
