@@ -120,7 +120,9 @@ subaru-natsuki-md/
 │   ├── economy/
 │   ├── rpg/
 │   └── pokemon/
-└── functions/            # Funciones de apoyo para comandos (preferir SIN API)
+└── functions/            # Funciones de apoyo para comandos
+    ├── api/              # Funciones que usan API externas (Nexray)
+    └── stickers/         # Conversión local a sticker WebP (sin API)
 ```
 
 Carpetas que **no se suben a GitHub** (ver `.gitignore`): `node_modules/`, `session/`, `database/`.
@@ -140,7 +142,10 @@ del grupo (y el bot debe ser admin en los que lo indican).
 | panel | `.status`, `.logs`, `.backup` (todos Owner) |
 | group | `.tagall`, `.hidetag <texto>`, `.kick`, `.add <número>`, `.promote`, `.demote`, `.linkgc` |
 | image | `.blur`, `.gris`, `.espejo`, `.imgpix`, `.meme arriba | abajo`, `.logo <texto>` (responde a una imagen o envíala con el comando) |
+| stickers | `.sticker` (alias `.stiker`): convierte una imagen en sticker (responde a una imagen o envíala con el comando); `.ttp <texto>`, `.attp <texto>`, `.brat <texto>`, `.bratanime <texto>`, `.brathd <texto>` (stickers); `.bratvid <texto>`, `.bratvidhd <texto>` (videos) |
 | pokemon | `.catch` (captura un Pokémon y envía su imagen), `.pokedex` (tu colección), `.pokedex <nombre o número>` (ficha de un Pokémon), `.pelea @usuario`, `.evolucionar <número>` |
+
+Los comandos de `stickers/` (excepto `.sticker`) usan la API de [Nexray](https://api.nexray.eu.cc/category/maker); su código está en `functions/api/nexray.js`. `.sticker` convierte la imagen de forma local con `functions/stickers/webp.js`.
 
 Los datos de Pokémon (Gen 1 a 4) están en `data/pokemon.json` y las imágenes en `assets/pokemon/`, así que no necesitan API.
 
