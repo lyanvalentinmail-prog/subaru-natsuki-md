@@ -1,6 +1,7 @@
 import { commandList } from '../../lib/loader.js'
 import { sendListButton } from '../../lib/interactive.js'
 import { log } from '../../lib/logger.js'
+import { fromSmallCaps } from '../../lib/smallcaps.js'
 import { loadBanner } from '../../lib/banner.js'
 import {
   MENU_CATEGORIES,
@@ -18,7 +19,7 @@ export default {
   alias: ['help', 'ayuda'],
   description: 'Muestra el menú con el botón para elegir categoría',
   async run({ sock, chat, reply, user, isOwner, isPremium, prefix, args }) {
-    const first = (args[0] || '').toLowerCase()
+    const first = fromSmallCaps(args[0] || '')
 
     // .menu <categoria>  -> comandos de esa categoría (lo usan las filas del botón)
     const cat = MENU_CATEGORIES.find(c => c.key === first)
