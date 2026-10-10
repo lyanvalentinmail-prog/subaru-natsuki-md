@@ -26,7 +26,7 @@ export default {
 
     const mine = strongest(collectionOf(getUser(number)))
     const theirs = strongest(collectionOf(getUser(target)))
-    if (!mine) return reply('No tienes Pokémon. Usa .pokemon para capturar uno.')
+    if (!mine) return reply('No tienes Pokémon. Usa .catch para capturar uno.')
     if (!theirs) return reply('Ese usuario no tiene Pokémon.')
 
     // El azar mueve el resultado un poco (±15 %), para que no siempre gane el más fuerte

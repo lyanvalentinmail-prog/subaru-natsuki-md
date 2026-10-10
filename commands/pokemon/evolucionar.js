@@ -10,7 +10,7 @@ export default {
     const list = collectionOf(user)
     const index = parseInt(args[0], 10) - 1
     const entry = list[index]
-    if (!entry) return reply('Escribe el número de tu lista (.pokemones).')
+    if (!entry) return reply('Escribe el número de tu lista (.pokedex).')
 
     const p = byId(entry.id)
     const evo = evolutionFor(p, entry.level)

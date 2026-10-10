@@ -140,9 +140,11 @@ del grupo (y el bot debe ser admin en los que lo indican).
 | panel | `.status`, `.logs`, `.backup` (todos Owner) |
 | group | `.tagall`, `.hidetag <texto>`, `.kick`, `.add <número>`, `.promote`, `.demote`, `.linkgc` |
 | image | `.blur`, `.gris`, `.espejo`, `.imgpix`, `.meme arriba | abajo`, `.logo <texto>` (responde a una imagen o envíala con el comando) |
-| pokemon | `.pokedex <nombre o número>`, `.pokemon` (captura), `.pokemones`, `.pelea @usuario`, `.evolucionar <número>` |
+| pokemon | `.catch` (captura un Pokémon y envía su imagen), `.pokedex` (tu colección), `.pokedex <nombre o número>` (ficha de un Pokémon), `.pelea @usuario`, `.evolucionar <número>` |
 
-Los datos de Pokémon (Gen 1 a 4) están en `data/pokemon.json`, así que no necesitan API.
+Los datos de Pokémon (Gen 1 a 4) están en `data/pokemon.json` y las imágenes en `assets/pokemon/`, así que no necesitan API.
+
+**Créditos de las imágenes:** los sprites vienen del proyecto [PokéSprite](https://github.com/msikma/pokesprite) (herramienta MIT). Los Pokémon son propiedad de Nintendo, Game Freak y The Pokémon Company.
 
 **Reinicio:** `.restart` vuelve a iniciar el bot automáticamente (`index.js` vigila el proceso).
 
