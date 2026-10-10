@@ -6,7 +6,7 @@ Bot de WhatsApp hecho con **Node.js** y **[Baileys](https://github.com/WhiskeySo
 Se conecta con **código QR** o **código de emparejamiento (pairing code)** y está pensado para
 ejecutarse en **Termux** (Android) sin dependencias nativas.
 
-> Estado actual: **estructura base lista, con un único comando: `.menu`** (alias `/help`, `/ayuda`).
+> Estado actual: **comandos de menú, info, owner, panel, grupo, imágenes y Pokémon** (ver la lista abajo).
 > El bot conecta, carga comandos de `commands/` automáticamente y aplica permisos; el resto de
 > comandos se irán agregando después.
 
@@ -91,10 +91,16 @@ subaru-natsuki-md/
 │   ├── menu.js           # Plantilla del menú (ESTADÍSTICAS, categorías, etc.)
 │   ├── banner.js         # Carga el banner de assets/
 │   ├── interactive.js    # Botones y listas (con imagen opcional)
+│   ├── image.js          # Filtros de imagen (Jimp)
+│   ├── media.js          # Descarga de imágenes de mensajes
+│   ├── pokedex.js        # Lectura de datos de Pokémon
+│   ├── group.js          # Búsqueda de participantes del grupo
+│   └── restart.js        # Código de reinicio
 │   ├── db.js             # Base de datos JSON de usuarios
 │   ├── utils.js          # Utilidades (texto de mensajes, números, etc.)
 │   └── logger.js         # Logs
 ├── assets/               # Imágenes (banner.jpg)
+├── data/                 # Datos locales (Pokémon Gen 1–4)
 ├── commands/             # Comandos por categoría (se cargan automáticamente)
 │   ├── menu/
 │   │   └── info/
@@ -118,6 +124,27 @@ subaru-natsuki-md/
 ```
 
 Carpetas que **no se suben a GitHub** (ver `.gitignore`): `node_modules/`, `session/`, `database/`.
+
+---
+
+## 📋 Comandos disponibles
+
+Los comandos con **(Owner)** solo los puede usar el owner. Los de **grupo** requieren ser admin
+del grupo (y el bot debe ser admin en los que lo indican).
+
+| Categoría | Comandos |
+| --- | --- |
+| menu | `.menu` (alias `.help`, `.ayuda`): menú con botón de categorías |
+| info | `.ping`, `.runtime`, `.info`, `.owner` |
+| owner | `.restart`, `.bc <texto>`, `.addprem`, `.delprem`, `.ban`, `.unban`, `.setlimit <cantidad>` (todos Owner) |
+| panel | `.status`, `.logs`, `.backup` (todos Owner) |
+| group | `.tagall`, `.hidetag <texto>`, `.kick`, `.add <número>`, `.promote`, `.demote`, `.linkgc` |
+| image | `.blur`, `.gris`, `.espejo`, `.imgpix`, `.meme arriba | abajo`, `.logo <texto>` (responde a una imagen o envíala con el comando) |
+| pokemon | `.pokedex <nombre o número>`, `.pokemon` (captura), `.pokemones`, `.pelea @usuario`, `.evolucionar <número>` |
+
+Los datos de Pokémon (Gen 1 a 4) están en `data/pokemon.json`, así que no necesitan API.
+
+**Reinicio:** `.restart` vuelve a iniciar el bot automáticamente (`index.js` vigila el proceso).
 
 ---
 
