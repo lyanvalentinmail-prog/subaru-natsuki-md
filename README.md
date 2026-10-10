@@ -1,5 +1,7 @@
 # subaru-natsuki-md
 
+![Banner](assets/banner.jpg)
+
 Bot de WhatsApp hecho con **Node.js** y **[Baileys](https://github.com/WhiskeySockets/Baileys)**.
 Se conecta con **código QR** o **código de emparejamiento (pairing code)** y está pensado para
 ejecutarse en **Termux** (Android) sin dependencias nativas.
@@ -70,7 +72,8 @@ OWNER_NUMBER=5491112345678 npm start
 
 ## 🖼️ Banner del menú
 
-El banner que aparece arriba del `.menu` es el archivo `assets/banner.jpg` (también se acepta `.jpeg` o `.png`).
+El banner que aparece arriba del `.menu` y en la portada de este README es el archivo `assets/banner.jpg`.
+Para cambiarlo, reemplázalo por tu imagen con el mismo nombre.
 Si no existe, el menú se envía igual, sin imagen.
 
 ---
