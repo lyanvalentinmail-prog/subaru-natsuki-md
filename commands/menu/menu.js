@@ -1,4 +1,3 @@
-import config from '../../config.js'
 import { commandList } from '../../lib/loader.js'
 import { sendListButton } from '../../lib/interactive.js'
 import { log } from '../../lib/logger.js'
@@ -29,23 +28,23 @@ export default {
     const paging = first === 'page'
     const page = paging ? Math.min(Math.max(parseInt(args[1], 10) || 1, 1), pages) : 1
 
-    // 1) Texto SIEMPRE visible: el menú completo (o la página de categorías al navegar)
-    const text = paging
-      ? buildPageText({ page, commandList, prefix })
-      : buildMenu({ user, isOwner, isPremium, prefix, commandList })
-    await reply(text)
+    // Un solo mensaje: el encabezado del menú con el botón justo debajo
+    const body = paging
+      ? `ᴄᴀᴛᴇɢᴏʀíᴀs — ᴘᴀɢɪɴᴀ ${page} ᴅᴇ ${pages}`
+      : buildMenu({ user, isOwner, isPremium })
 
-    // 2) Botón debajo, que abre la lista de categorías
     try {
       await sendListButton(sock, chat, {
-        body: '📜 Elige una categoría para ver sus comandos 👇',
-        footer: config.botName,
+        body,
         buttonText: BUTTON_TEXT,
         sectionTitle: `Categorías ${page}/${pages}`,
         rows: buildCategoryRows({ page, commandList, prefix }),
       })
     } catch (err) {
-      log.error('No se pudo enviar el botón del menú:', err.message)
+      // Si WhatsApp no acepta el botón, se envía el mismo contenido como texto
+      log.error('No se pudo enviar el botón del menú, se envía como texto:', err.message)
+      const fallback = paging ? '' : body + '\n\n'
+      await reply(fallback + buildPageText({ page, commandList, prefix }))
     }
   },
 }
