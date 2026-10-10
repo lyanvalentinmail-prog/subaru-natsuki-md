@@ -1,6 +1,7 @@
 import { commandList } from '../../lib/loader.js'
 import { sendListButton } from '../../lib/interactive.js'
 import { log } from '../../lib/logger.js'
+import { loadBanner } from '../../lib/banner.js'
 import {
   MENU_CATEGORIES,
   buildCategoryRows,
@@ -33,13 +34,25 @@ export default {
       ? `ᴄᴀᴛᴇɢᴏʀíᴀs — ᴘᴀɢɪɴᴀ ${page} ᴅᴇ ${pages}`
       : buildMenu({ user, isOwner, isPremium })
 
+    const options = {
+      body,
+      buttonText: BUTTON_TEXT,
+      sectionTitle: `Categorías ${page}/${pages}`,
+      rows: buildCategoryRows({ page, commandList, prefix }),
+    }
+    // El banner se usa en la página 1; si la subida de la imagen falla, se envía sin ella
+    const banner = paging ? null : loadBanner()
+
     try {
-      await sendListButton(sock, chat, {
-        body,
-        buttonText: BUTTON_TEXT,
-        sectionTitle: `Categorías ${page}/${pages}`,
-        rows: buildCategoryRows({ page, commandList, prefix }),
-      })
+      if (banner) {
+        try {
+          await sendListButton(sock, chat, { ...options, image: banner })
+          return
+        } catch (err) {
+          log.error('No se pudo enviar el banner, se envía sin imagen:', err.message)
+        }
+      }
+      await sendListButton(sock, chat, options)
     } catch (err) {
       // Si WhatsApp no acepta el botón, se envía el mismo contenido como texto
       log.error('No se pudo enviar el botón del menú, se envía como texto:', err.message)

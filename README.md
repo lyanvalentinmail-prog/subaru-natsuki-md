@@ -68,6 +68,13 @@ OWNER_NUMBER=5491112345678 npm start
 
 ---
 
+## 🖼️ Banner del menú
+
+El banner que aparece arriba del `.menu` es el archivo `assets/banner.jpg` (también se acepta `.jpeg` o `.png`).
+Si no existe, el menú se envía igual, sin imagen.
+
+---
+
 ## 🗂️ Estructura del proyecto
 
 ```
@@ -79,9 +86,12 @@ subaru-natsuki-md/
 │   ├── handler.js        # Procesa mensajes y aplica permisos
 │   ├── loader.js         # Carga automática de comandos desde commands/
 │   ├── menu.js           # Plantilla del menú (ESTADÍSTICAS, categorías, etc.)
+│   ├── banner.js         # Carga el banner de assets/
+│   ├── interactive.js    # Botones y listas (con imagen opcional)
 │   ├── db.js             # Base de datos JSON de usuarios
 │   ├── utils.js          # Utilidades (texto de mensajes, números, etc.)
 │   └── logger.js         # Logs
+├── assets/               # Imágenes (banner.jpg)
 ├── commands/             # Comandos por categoría (se cargan automáticamente)
 │   ├── menu/
 │   │   └── info/
