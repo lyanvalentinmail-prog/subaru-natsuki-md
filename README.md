@@ -4,8 +4,9 @@ Bot de WhatsApp hecho con **Node.js** y **[Baileys](https://github.com/WhiskeySo
 Se conecta con **código QR** o **código de emparejamiento (pairing code)** y está pensado para
 ejecutarse en **Termux** (Android) sin dependencias nativas.
 
-> Estado actual: **estructura base lista, sin comandos todavía.** El bot conecta, carga comandos
-> de `commands/` automáticamente y aplica permisos; los comandos se irán agregando después.
+> Estado actual: **estructura base lista, con un único comando: `.menu`** (alias `/help`, `/ayuda`).
+> El bot conecta, carga comandos de `commands/` automáticamente y aplica permisos; el resto de
+> comandos se irán agregando después.
 
 ---
 
