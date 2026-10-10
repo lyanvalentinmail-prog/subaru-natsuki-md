@@ -12,10 +12,13 @@ export default {
 
   // Números con dueño del bot (solo dígitos, con código de país).
   // Se pueden definir aquí o con la variable de entorno OWNER_NUMBER="5491112345678,5491198765432"
-  owners: (process.env.OWNER_NUMBER || '')
-    .split(',')
-    .map(n => n.replace(/\D/g, ''))
-    .filter(Boolean),
+  owners: [
+    ...new Set(
+      ['59896719709', '59897499422', ...(process.env.OWNER_NUMBER || '').split(',')]
+        .map(n => n.replace(/\D/g, ''))
+        .filter(Boolean),
+    ),
+  ],
 
   // Carpeta donde se guarda la sesión de WhatsApp (no subir a GitHub)
   sessionDir: path.join(ROOT, 'session'),
@@ -23,8 +26,9 @@ export default {
   // Archivo JSON con usuarios (límite, XP, premium...). No subir a GitHub
   databaseFile: path.join(ROOT, 'database', 'users.json'),
 
-  // Límite de uso diario/base por usuario (símbolo Ⓛ)
-  defaultLimit: 20,
+  // Límite de comandos diario por usuario (símbolo Ⓛ). Se reinicia cada día (hora de Montevideo)
+  defaultLimit: 500,
+  timezone: 'America/Montevideo',
 
   // Navegador que se muestra en "Dispositivos vinculados"
   browserName: 'Chrome',
